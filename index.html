@@ -43,8 +43,7 @@
   		  },
   		  revokable:true,
   		  onStatusChange: function(status) {
-  		   console.log(this.hasConsented() ?
-  		    'enable cookies' : 'disable cookies');
+  		   player.playVideo();
   		  },
   		  law: {
   		   regionalLaw: false,
@@ -58,8 +57,42 @@
 	    	<img class="center-fit" src="main.png">
 		</div>
 
+		<div id="player"></div>
+		<script>
+      		// 2. This code loads the IFrame Player API code asynchronously.
+      		var tag = document.createElement('script');
+		
+      		tag.src = "https://www.youtube.com/iframe_api";
+      		var firstScriptTag = document.getElementsByTagName('script')[0];
+      		firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+		
+      		// 3. This function creates an <iframe> (and YouTube player)
+      		//    after the API code downloads.
+      		var player;
+      		function onYouTubeIframeAPIReady() {
+      		  player = new YT.Player('player', {
+      		    height: '390',
+      		    width: '640',
+      		    videoId: 'E8gmARGvPlI',
+      		    playerVars: {
+      		      'playsinline': 1
+      		    },
+      		    events: {
+      		      'onReady': onPlayerReady,
+      		      'onStateChange': onPlayerStateChange
+      		    }
+      		  });
+      		}
 
-	<iframe allow="autoplay" width="560" height="315" src="https://www.youtube.com/embed/E8gmARGvPlI?start=17&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      		function onPlayerReady(event) {
+  			event.target.seekTo(17);
+        	event.target.playVideo();
+      		}
+      	</script>
+
+
+
+	<!-- <iframe allow="autoplay" width="560" height="315" src="https://www.youtube.com/embed/E8gmARGvPlI?start=17&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
 	
 	</body>
 
