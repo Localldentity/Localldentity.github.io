@@ -33,32 +33,26 @@
 	</head>	
 
 	<body>
-		<!-- <script src="https://www.youtube.com/iframe_api"></script>
-		<div id="player"></div>
 		<script>
-		
-      		// 3. This function creates an <iframe> (and YouTube player)
-      		//    after the API code downloads.
-      		var player;
-    		  window.YT.ready(function() {
-  				    player = new window.YT.Player("video", {
-  				      height: "390",
-  				      width: "640",
-  				      videoId: "E8gmARGvPlI",
-  				      events: {
-  				        onReady: onPlayerReady
-  				      }
-  				    });
-  				  });
-  				
-      		
-
-      		function onPlayerReady(event) {
-        	event.target.playVideo();
-        	event.target.seekTo(17);
-      		}
+			function callPlayer(func, args) {
+			    var iframes = document.getElementsByTagName('iframe');
+			    for (var i = 0; i < iframes.length; ++i) {
+			        if (iframes[i]) {
+			            var src = iframes[i].getAttribute('src');
+			            if (src) {
+			                if (src.indexOf('youtube.com/embed') != -1) {
+			                    iframes[i].contentWindow.postMessage(JSON.stringify({
+			                        'event': 'command',
+			                        'func': func,
+			                        'args': args || []
+			                    }), "*");
+			                }
+			            }
+			        }
+			    }
+			}
       	</script>
- -->
+
       	
 
 		<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
@@ -72,8 +66,7 @@
   		  },
   		  revokable:true,
   		  onStatusChange: function(status) {
-  		   player.playVideo();
-  		   player.seekTo(17);
+  		  	callPlayer("pauseVideo");
   		  },
   		  law: {
   		   regionalLaw: false,
