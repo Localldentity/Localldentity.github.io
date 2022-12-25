@@ -33,37 +33,13 @@
 	</head>	
 
 	<body>
-		 <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
-  		<script>
-  		 window.cookieconsent.initialise({
-  		  container: document.getElementById("content"),
-  		  palette:{
-  		   popup: {background: "#fff"},
-  		   button: {background: "#aa0000"},
-  		  },
-  		  revokable:true,
-  		  onStatusChange: function(status) {
-  		   player.playVideo();
-  		  },
-  		  law: {
-  		   regionalLaw: false,
-  		  },
-  		  location: true,
-  		 });
-  		</script>
-
-
-		<div class="imgbox">
-	    	<img class="center-fit" src="main.png">
-		</div>
-
 		<div id="player"></div>
 		<script>
       		// 2. This code loads the IFrame Player API code asynchronously.
       		var tag = document.createElement('script');
 		
       		tag.src = "https://www.youtube.com/iframe_api";
-      		var firstScriptTag = document.getElementsByTagName('script')[1];
+      		var firstScriptTag = document.getElementsByTagName('script')[0];
       		firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 		
       		// 3. This function creates an <iframe> (and YouTube player)
@@ -90,6 +66,35 @@
       		}
       	</script>
 
+      	
+
+		<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
+
+  		<script>
+  		 window.cookieconsent.initialise({
+  		  container: document.getElementById("content"),
+  		  palette:{
+  		   popup: {background: "#fff"},
+  		   button: {background: "#aa0000"},
+  		  },
+  		  revokable:true,
+  		  onStatusChange: function(status) {
+  		   player.playVideo();
+  		  },
+  		  law: {
+  		   regionalLaw: false,
+  		  },
+  		  location: true,
+  		 });
+  		</script>
+
+
+		<div class="imgbox">
+	    	<img class="center-fit" src="main.png">
+		</div>
+
+		
+	
 
 
 	<!-- <iframe allow="autoplay" width="560" height="315" src="https://www.youtube.com/embed/E8gmARGvPlI?start=17&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
