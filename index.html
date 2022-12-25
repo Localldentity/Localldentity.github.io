@@ -33,19 +33,13 @@
 	</head>	
 
 	<body>
+		<script src="https://www.youtube.com/iframe_api"></script>
 		<div id="player"></div>
 		<script>
-      		// 2. This code loads the IFrame Player API code asynchronously.
-      		var tag = document.createElement('script');
-		
-      		tag.src = "https://www.youtube.com/iframe_api";
-      		var firstScriptTag = document.getElementsByTagName('script')[0];
-      		firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 		
       		// 3. This function creates an <iframe> (and YouTube player)
       		//    after the API code downloads.
       		var player;
-      		function onYouTubeIframeAPIReady() {
       		  player = new YT.Player('player', {
       		    height: '390',
       		    width: '640',
@@ -55,14 +49,13 @@
       		    },
       		    events: {
       		      'onReady': onPlayerReady,
-      		      'onStateChange': onPlayerStateChange
       		    }
       		  });
-      		}
+      		
 
       		function onPlayerReady(event) {
-  			event.target.seekTo(17);
         	event.target.playVideo();
+        	event.target.seekTo(17);
       		}
       	</script>
 
@@ -80,6 +73,7 @@
   		  revokable:true,
   		  onStatusChange: function(status) {
   		   player.playVideo();
+  		   player.seekTo(17);
   		  },
   		  law: {
   		   regionalLaw: false,
